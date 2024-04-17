@@ -1,0 +1,82 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tfg_coverpage}[Cover page]
+
+\RequirePackage{xcolor}
+\RequirePackage{changepage}
+\RequirePackage{eso-pic}
+\RequirePackage{geometry}
+\RequirePackage{graphicx}
+
+\usepackage{ifthen}
+
+\definecolor{azulUC3M}{RGB}{0,0,102}
+\definecolor{gray97}{gray}{.97}
+\definecolor{gray75}{gray}{.75}
+\definecolor{gray45}{gray}{.45}
+\definecolor{barblue}{RGB}{153,204,254}
+
+
+% Variables ya importadas en la plantilla general
+%\input{tfg_vars.tex}
+
+
+% comando para imprimir el footer con tipo de licencia
+\newcommand{\license}[1]
+{
+  \ifthenelse{\equal{#1}{cc}}{
+    % si nuestro trabajo se va a publicar con una licencia Creative Commons, incluir estas líneas. Es la opción recomendada.
+    % incluimos el logotipo de creativecommons
+    \includesvg[width=4.2cm]{images/coverpage/creativecommons_by-nc-nd.eu.svg}\\ 
+    This work is subjected to Creative Commons license - \textbf{Attribution - Non commercial - No derivatives}
+  }{}
+  \ifthenelse{\equal{#1}{reserved}}{
+    All rights reserved
+  }{}
+  % Aquí debajo se pueden definir más tipos, siguiendo el esquema anterior
+}
+
+
+
+%-------------
+%	PORTADA
+%-------------
+
+% Crea comando Portada
+\newcommand\makecover{
+
+\begin{titlepage}
+	\begin{sffamily}
+	\color{azulUC3M}
+	\begin{center}
+		\begin{figure}[H] %incluimos el logotipo de la Universidad
+			\makebox[\textwidth][c]{\includesvg[width=16cm]{images/coverpage/UC3M_logo.svg}}
+		\end{figure}
+		\vspace{2.5cm}
+		\begin{Large}
+			\Bachelor \\
+			Academic year \Year \\
+			\vspace{2cm}		
+			\textsl{Bachelor's thesis}
+			\bigskip
+			
+		\end{Large}
+		 	{\Huge \Title }\\
+		 	\vspace*{0.5cm}
+	 		\rule{10.5cm}{0.1mm}\\
+			\vspace*{0.9cm}
+			{\LARGE \Author }\\ 
+			\vspace*{1cm}
+		\begin{Large}
+			Supervisor/Advisor\\
+			\SupervAdv \\
+			\PlaceDate \\
+		\end{Large}
+	\end{center}
+	\vfill
+	\color{black}
+	
+    \license{\licensetype}
+	
+	\end{sffamily}
+\end{titlepage}
+}

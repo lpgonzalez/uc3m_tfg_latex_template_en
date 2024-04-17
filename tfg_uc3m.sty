@@ -1,0 +1,253 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tfg_uc3m}[UC3M "Trabajo fin de grado" package]
+
+% FUENTES
+%\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{txfonts} 
+\RequirePackage[english,spanish,es-tabla]{babel}
+
+% Paquetes "molones"
+\RequirePackage{graphicx}
+\RequirePackage{hyperref}
+%\RequirePackage{fancyhdr} % Repetido
+\RequirePackage{lipsum}
+%\RequirePackage{mmap} % Da Problemas !
+\RequirePackage{relsize}
+\RequirePackage{fontawesome}
+\RequirePackage{rotating}
+\RequirePackage{csquotes}
+
+% Tipo de letra
+\RequirePackage{times}
+\RequirePackage[scaled=0.75]{beramono}
+
+%\RequirePackage{float} % Para el return H
+
+% LISTADOS DE CÓDIGO
+% soporte y estilo para listados de código. Más información en https://es.wikibooks.org/wiki/Manual_de_LaTeX/Listados_de_código/Listados_con_listings
+\RequirePackage{listings}
+
+% definimos un estilo de listings
+\lstdefinestyle{estilo}{ frame=Ltb,
+	framerule=0pt,
+	aboveskip=0.5cm,
+	framextopmargin=3pt,
+	framexbottommargin=3pt,
+	framexleftmargin=0.4cm,
+	framesep=0pt,
+	rulesep=.4pt,
+	backgroundcolor=\color{gray97},
+	rulesepcolor=\color{black},
+	%
+	basicstyle=\ttfamily\footnotesize,
+	keywordstyle=\bfseries,
+	stringstyle=\ttfamily,
+	showstringspaces = false,
+	commentstyle=\color{gray45},     
+	%
+	numbers=left,
+	numbersep=15pt,
+	numberstyle=\tiny,
+	numberfirstline = false,
+	breaklines=true,
+	xleftmargin=\parindent
+}
+
+%\captionsetup[lstlisting]{font=small, labelsep=period}
+% fijamos el estilo a utilizar
+%\lstset{style=estilo}
+%\renewcommand{\lstlistingname}{\uppercase{Código}}
+
+
+
+% MÁRGENES: 2,5 cm sup. e inf.; 3 cm izdo. y dcho.
+\RequirePackage[a4paper,vmargin=2.5cm,hmargin=3cm]{geometry}
+
+% INTERLINEADO: Estrecho (6 ptos./interlineado 1,15) o Moderado (6 ptos./interlineado 1,5)
+\renewcommand{\baselinestretch}{1.15}
+%\parskip=6pt   % Espacio entre párrafos
+
+% Tipos de letra en títulos y secciones
+\newcommand{\dedicafont}{\usefont{T1}{phv}{m}{n}\fontsize{14}{17.5}\selectfont}
+\newcommand*{\copyrightfont}{\usefont{T1}{phv}{m}{n}\fontsize{6}{7.5}\selectfont}
+\newcommand{\sectionalfont}{\usefont{T1}{phv}{b}{n}}
+% {64}{80} {56}{70} {48}{60} {32}{40} {24}{30} {18}{22.5} {16}{20} {14}{17.5} {12}{15}
+\newcommand{\partnumberfont}{\sectionalfont\fontsize{64}{80}\selectfont}
+\newcommand{\parttitlefont}{\sectionalfont\fontsize{48}{60}\selectfont}
+\newcommand{\chapternumberfont}{\sectionalfont\fontsize{64}{80}\selectfont}
+\newcommand{\chaptertitlefont}{\sectionalfont\fontsize{32}{40}\selectfont}
+\newcommand{\sectiontitlefont}{\sectionalfont\fontsize{18}{22.5}\selectfont}
+\newcommand{\subsectiontitlefont}{\sectionalfont\fontsize{16}{20}\selectfont}
+\newcommand{\subsubsectiontitlefont}{\sectionalfont\fontsize{14}{17.5}\selectfont}
+\newcommand{\headertitlefont}{\sectionalfont\fontsize{12}{15}\selectfont}
+
+\RequirePackage{titlesec}
+\titleformat{\chapter} % command
+[display] % shape
+{} % format
+{\chapternumberfont\flushright\thechapter} % label
+{0pt} % sep
+{\chaptertitlefont\flushright} % before
+[] % after
+
+\titleformat{\section} % command
+[block] % shape
+{} % format
+{\sectiontitlefont\thesection} % label
+{1.5ex} % sep
+{\sectiontitlefont} % before
+[] % after
+
+
+\titleformat{\subsection} % command
+[block] % shape
+{} % format
+{\subsectiontitlefont\thesubsection} % label
+{1.5ex} % sep
+{\subsectiontitlefont} % before
+[] % after
+
+
+\titleformat{\subsubsection} % command
+[block] % shape
+{} % format
+{\subsubsectiontitlefont\thesubsubsection} % label
+{1.5ex} % sep
+{\subsubsectiontitlefont} % before
+[] % after
+
+
+
+\input{tfg_vars.tex}
+
+% comando para imprimir el footer con tipo de licencia
+\newcommand{\custombib}[1]
+{
+  \ifthenelse{\equal{#1}{apa}}{
+    % Bibliografía en formato APA
+    \usepackage[style=apa, backend=biber, natbib=true, hyperref=true, uniquelist=false, sortcites]{biblatex}
+  }{}
+  \ifthenelse{\equal{#1}{ieee}}{
+    % Bibliografía en formato IEEE
+    \usepackage[style=ieee, backend=biber, natbib=true, hyperref=true, uniquelist=false, sortcites]{biblatex}
+  }{}
+  % Aquí debajo se pueden definir más tipos, siguiendo el esquema anterior
+}
+
+
+
+%\RequirePackage[table]{xcolor} % Para el color de portada ?
+
+% Soporte para GENERAR PDF/A --es importante de cara a su inclusión -Archivo porque es el formato óptimo de preservación y a la generación de metadatos, tal y como se describe en http://uc3m.libguides.com/ld.php?content_id=31389625. En la carpeta incluímos el archivo plantilla_tfg_2017.xmpdata en el que puedes incluir los metadatos que se incorporarán al archivo PDF cuando lo compiles. Ese archivo debe llamarse igual que tu archivo .tex. Puedes ver un ejemplo en esta misma carpeta.
+%\RequirePackage[a-1b]{pdfx}
+
+% ENLACES
+\RequirePackage{hyperref}
+\hypersetup{colorlinks=true,
+	linkcolor=black, % enlaces a partes del documento (p.e. índice) en color negro
+	urlcolor=blue} % enlaces a recursos fuera del documento en azul
+
+% EXPRESIONES MATEMATICAS
+\RequirePackage{amssymb,amsfonts,eurosym}
+%\RequirePackage{amsmath} 
+%\RequirePackage{amsthm}
+
+
+
+% diseño de PIE DE PÁGINA
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\cfoot{\thepage} % Numeración en el centro de la página Center Foot
+\fancypagestyle{plain}{\pagestyle{fancy}}
+
+
+% DISEÑO DE LOS TÍTULOS de las partes del trabajo (capítulos y epígrafes o subcapítulos)
+%\RequirePackage{titlesec}
+%\RequirePackage{titletoc}
+%\titleformat{\chapter}[block]
+%{\large\bfseries\filcenter}
+%{\thechapter.}
+%{5pt}
+%{\MakeUppercase}
+%{}
+%\titlespacing{\chapter}{0pt}{0pt}{*3}
+%\titlecontents{chapter}
+%[0pt]                                               
+%{}
+%{\contentsmargin{0pt}\thecontentslabel.\enspace\uppercase}
+%{\contentsmargin{0pt}\uppercase}                        
+%{\titlerule*[.7pc]{.}\contentspage}                 
+
+%\titleformat{\section}
+%{\bfseries}
+%{\thesection.}
+%{5pt}
+%{}
+%\titlecontents{section}
+%[5pt]                                               
+%{}
+%{\contentsmargin{0pt}\thecontentslabel.\enspace}
+%{\contentsmargin{0pt}}
+%{\titlerule*[.7pc]{.}\contentspage}
+
+
+%\titleformat{\subsection}
+%{\normalsize\bfseries}
+%{\thesubsection.}
+%{5pt}
+%{}
+%\titlecontents{subsection}
+%[10pt]                                               
+%{}
+%{\contentsmargin{0pt}                          
+%	\thecontentslabel.\enspace}
+%{\contentsmargin{0pt}}                        
+%{\titlerule*[.7pc]{.}\contentspage}  
+
+
+% DISEÑO DE TABLAS. Puedes elegir entre el estilo para ingeniería o para ciencias sociales y humanidades. Por defecto, está activado el estilo de ingeniería. Si deseas utilizar el otro, comenta las líneas del diseño de ingeniería y descomenta las del diseño de ciencias sociales y humanidades
+\RequirePackage{multirow} % permite combinar celdas 
+\RequirePackage{caption} % para personalizar el título de tablas y figuras
+\RequirePackage{subcaption} % Para poner dos imágenes juntas
+\RequirePackage{floatrow} % utilizamos este paquete y sus macros \ttabbox y \ffigbox para alinear los nombres de tablas y figuras de acuerdo con el estilo definido. Para su uso ver archivo de ejemplo 
+\RequirePackage{array} % con este paquete podemos definir en la siguiente línea un nuevo tipo de columna para tablas: ancho personalizado y contenido centrado
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\DeclareCaptionFormat{upper}{#1#2\uppercase{#3}\par}
+
+% Diseño de tabla
+\captionsetup[table]{
+	name=Table,
+	justification=centering,
+	labelsep=period,
+	width=.75\linewidth,
+	labelfont=small,
+	font=small,
+}
+
+
+% Diseño de figuras 
+%\captionsetup[figure]{
+%	format=hang,
+%	name=Fig.,
+%	singlelinecheck=off, % Ajusta el nombre de la figura a la Izquierda
+%	labelsep=period,
+%	labelfont=small,
+%	font=small
+%}
+
+
+% NOTAS A PIE DE PÁGINA
+\RequirePackage{chngcntr} %para numeración contínua de las notas al pie
+\counterwithout{footnote}{chapter}
+
+
+% Portada
+\RequirePackage{tfg_coverpage}
+
+%% Separamos los párrafos un poquito más
+\setlength{\parskip}{1.5ex}
+
+\endinput

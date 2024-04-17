@@ -1,0 +1,247 @@
+\chapter{Elementos básicos}
+\label{chap:básicos} % Etiqueta para enlazar al capítulo desde el texto
+
+% Definición de colores personalizados
+\definecolor{azulUC3M}{RGB}{24, 30, 146}
+\definecolor{amarilloFosforito}{HTML}{FFFF00}
+
+
+\section{Texto}
+
+\subsection{Texto simple}
+
+Mi primer documento en \LaTeX. Ejemplo simple
+sin paquetes adicionales.
+
+% -------------------------
+
+\subsubsection{Formatos para texto simple}
+
+Lo más \textbf{importante}
+de este \underline{documento} 
+no es la \textit{cursiva}.
+También podemos \textbf{\textit{encadenar formatos}}.
+
+% -------------------------
+
+\subsection{Colores en el texto}
+
+Hola, soy un \textcolor{red}{texto en rojo} y yo un \textcolor{blue}{texto en azul} y en \textcolor{green}{verde}.
+
+% -------------------------
+
+\section{Texto con color personalizado y subrayado de color}
+
+Ahora podemos poner \textcolor{azulUC3M}{UC3M} en color corporativo y \colorbox{amarilloFosforito}{subrayar texto} en amarillo ``fosforito’’.
+
+% -------------------------
+
+\section{Salto de página}
+
+% Salto de página
+\newpage
+
+% -------------------------
+
+\section{Salto de línea}
+
+Texto
+% Salto de línea
+\newline
+Otro texto en nueva línea
+
+% -------------------------
+
+\section{Espaciado personalizado entre líneas de texto}
+
+Hola, soy un texto
+
+% Espaciado personalizado
+\vspace{1cm}
+Y yo soy otro texto con una separación de 1 cm.
+
+\vspace{50pt}
+Y yo soy otro texto más alejado.
+
+
+
+
+\section{Listas simples}
+
+Las listas son sencillas. Para crearlas:
+\begin{itemize}
+  \item Las entradas de la lista comienzan con el comando \verb|\item| .
+  \item Este tipo de lista tiene cada entrada empezando con un ``bullet''.
+  \item La longitud de cada entrada es arbitraria.
+  \item Y el número de elementos también lo es.
+\end{itemize}
+
+% -------------------------
+
+\section{Listas enumeradas}
+
+Las listas enumeradas también son sencillas:
+\begin{enumerate}
+  \item Los elementos se enumeran automáticamente.
+  \item Los números  se crean automáticamente en el entorno \texttt{enumerate}.
+  \item Otra entrada
+\end{enumerate}
+
+% -------------------------
+
+\subsection{Sublistas enumeradas}
+
+Ejemplo de sublistas enumeradas:
+\begin{enumerate}
+  \item Primer nivel.
+  \begin{enumerate}
+    \item Segundo nivel.
+    \begin{enumerate}
+      \item Tercer nivel.
+      \item Tercer nivel.
+    \end{enumerate}
+    \item Segundo nivel.
+  \end{enumerate}
+  \item Primer nivel.
+\end{enumerate}
+
+% -------------------------
+
+\section{Más sublistas}
+
+Otro ejemplo de sublistas:
+\begin{itemize}
+  \item Primer nivel.
+  \begin{itemize}
+    \item Segundo nivel.
+    \begin{itemize}
+      \item Tercer nivel.
+      \item Tercer nivel.
+    \end{itemize}
+    \item Segundo nivel.
+  \end{itemize}
+  \item Primer nivel.
+\end{itemize}
+
+% -------------------------
+
+\section{Listas personalizadas}
+
+Tanto las listas con puntos como las enumeradas permiten cambiar el elemento de inicio con \verb|\item[elemento]|
+\begin{enumerate}
+  \item Primer punto
+  \item Segundo punto
+  \item[!] Tercer punto, comenzando con exclamación
+  \item[$\blacksquare$] Ahora empezando con un cuadrado negro
+  \item[NOTA] Esta entrada no tiene ``bullet‘’
+  \item[] Entrada en blanco?
+\end{enumerate}
+
+
+
+% -------------------------
+% -------------------------
+% -------------------------
+
+
+
+\section{Imágenes}
+
+\subsection{Raster}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[height=7cm]{images/examples/gul_logo_raster.png}
+    \caption{Logo del GUL en formato PNG}
+    \label{fig:logo1}
+\end{figure}
+
+La figura \ref{fig:logo1} se encuentra en la página \pageref{fig:logo1}.
+
+\newpage
+
+% -------------------------
+
+\subsection{Vectorial (svg)}
+
+\begin{figure}[ht]
+     \includesvg[width=\textwidth]{images/examples/gul_logo_vector.svg}
+     \centering
+     \caption{Logo del GUL en formato vectorial (svg)}
+     \label{fig:logo2}
+\end{figure}
+
+
+
+\section{Tablas y enlaces externos (links)}
+
+% ------------------------------------------------------
+% Recurso recomendado: https://www.tablesgenerator.com/
+% ------------------------------------------------------
+Recurso recomendado: \href{https://www.tablesgenerator.com/}{Tables generator}.
+
+\begin{table}[ht]
+  \begin{tabular}{ |c|c|c| } 
+    \hline
+    Columna A & Columna B & Columna C\\ 
+    1 & 3 & 5 \\ 
+    2 & 4 & 6 \\ 
+    \hline
+  \end{tabular}
+  \centering
+  \caption{Tabla de ejemplo}
+  \label{tab:tabla1}
+\end{table}
+
+\vspace{1cm}
+
+\begin{table}[ht]
+\begin{tabular}{ccccc}
+\cline{1-4}
+\multicolumn{2}{|c|}{emosido}                       & \multicolumn{1}{c|}{}      & \multicolumn{1}{c|}{}     &                       \\ \cline{1-4}
+\multicolumn{1}{|c|}{} & \multicolumn{2}{c|}{\multirow{2}{*}{\textbf{engañado}}} & \multicolumn{1}{c|}{}     &                       \\ \cline{1-1} \cline{4-4}
+\multicolumn{1}{|c|}{} & \multicolumn{2}{c|}{}                                   & \multicolumn{1}{c|}{}     &                       \\ \cline{1-4}
+\multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{}      & \multicolumn{1}{c|}{}      & \multicolumn{1}{c|}{hola} &                       \\ \cline{1-4}
+                       &                            &                            &                           & \textit{Hello there!}
+\end{tabular}
+\centering
+\caption{Otra tabla de ejemplo}
+\label{tab:tablaEmosido}
+\end{table}
+
+
+
+\section{Emojis}
+
+% -------------------------
+
+\subsection{Emojis con el paquete ``emoji''}
+
+Emojis con colores gracias al paquete \texttt{emoji} y LuaLaTeX:
+\emoji{leaves}
+\emoji{rose}
+
+Otro ejemplo, en blanco y negro, usando el código Unicode para carita feliz (U+1F600): {\fontspec{Symbola}\symbol{"1F600}}
+
+% -------------------------
+
+\subsection{Emojis con el tipografía específica (NotoColorEmoji.ttf) y códigos de caracter Unicode}
+
+\newfontfamily\emojifont[Renderer=Harfbuzz]{NotoColorEmoji.ttf}
+
+Emojis utilizando una tipografía específica y código de caracter Unicode (U+1F600):
+% Utilizar \emojifont en un grupo para hacer que su efecto sea local
+{\emojifont \Uchar"1F600 \char"1F600}
+% http://www.unicode.org/emoji/charts/full-emoji-list.html
+
+
+
+\section{Acrónimos y glosario}
+
+El \gls{GULa} (o \gls{GULg}) forma parte de la \gls{UC3Ma} (\gls{UC3Mg}).
+
+
+
+\section{Bibliografía y citas}
+
+Cita a una referencia \cite{prieto2014applications}, y cita con dos referencias \cite{prieto2014applications, gonzalez2020simultaneous}.
