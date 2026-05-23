@@ -1,0 +1,143 @@
+% Mandatory annex: Generative AI use declaration (faithful to the official
+% UC3M form). The header and footer are those of the thesis template itself.
+% The guidance (in green) and the use-type guide are controlled by
+% \aiShowExplanations in tfg_vars.tex: set it to false for the production-ready
+% version, without explanations or unused sections.
+% Note: the official, legally binding version of this form is in Spanish;
+% this is a faithful English rendering for theses written in English.
+\phantomsection
+\addcontentsline{toc}{chapter}{Generative AI use declaration}
+\markboth{Generative AI use declaration}{Generative AI use declaration}
+\chapter*{Declaration on the use of Generative Artificial Intelligence (GenAI) in the Bachelor's Thesis (TFG)}
+
+\noindent\textbf{I have used GenAI in my thesis}
+
+\aihint{Mark as appropriate:}
+
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}p{3.5cm}|>{\centering\arraybackslash}p{3.5cm}|}
+\hline
+\aiYesCell{\aiUsed}{YES} & \aiNoCell{\aiUsed}{NO} \\
+\hline
+\end{tabular}
+\end{center}
+
+\ifthenelse{\equal{\aiUsed}{true}}{% ---- GenAI used: complete the 3 parts ----
+
+\aihint{If you marked YES, complete the following 3 parts of this document.}
+
+% ===================== PART 1 =====================
+\section*{Part 1: declaration of legal, ethical and responsible behaviour}
+
+Bear in mind that the use of GenAI entails risks and may lead to serious academic consequences: the assessment of your thesis may be compromised if the use of GenAI involves confidential data, materials protected by copyright, or personal data, and it is done without meeting the conditions required in each case (authorisation of the data subjects, authorisation of the rights holders, and following the University's instructions).
+
+\medskip
+\noindent\textbf{Question 1.} In my interaction with GenAI tools I have provided \textbf{confidential data} always with the due authorisation of the parties involved. Confidentiality covers any information that a person or organisation wishes to protect for legal, commercial, privacy or strategic reasons (such as patents or trade secrets).
+
+\noindent\begin{tabularx}{\linewidth}{|X|X|}
+\hline
+\aiYesCell{\aiConfidentialData}{YES, I have used such data with the authorisation of the parties involved}
+&
+\aiNoCell{\aiConfidentialData}{NO, I have not used confidential data}
+\\ \hline
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Question 2.} In my interaction with GenAI tools I have provided \textbf{materials protected by copyright} always with the authorisation of the respective rights holders.
+
+\noindent\begin{tabularx}{\linewidth}{|X|X|}
+\hline
+\aiYesCell{\aiCopyrightedMaterial}{YES, I have used such materials with the authorisation of the copyright holders; or without it because they fall under one of the exceptions or limits allowed by law:\newline \textbullet~works in the public domain\newline \textbullet~licensed works (Creative Commons licenses)\newline \textbullet~use of excerpts for research purposes (right of quotation)}
+&
+\aiNoCell{\aiCopyrightedMaterial}{NO, I have not used materials protected by copyright}
+\\ \hline
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Question 3.} In my interaction with GenAI tools I have provided \textbf{personal data} with the due authorisation of the parties involved.
+
+\noindent\begin{tabularx}{\linewidth}{|X|X|}
+\hline
+\aiYesCell{\aiPersonalData}{YES, I have used such data with the authorisation of the parties involved and in accordance with the instructions in the \href{https://docs.google.com/document/d/1YghVxFwo8a1VqdfnvJiZzlmAkfYepbDmD4g3hTOW9ro/edit}{guide approved by the University}}
+&
+\aiNoCell{\aiPersonalData}{NO, I have not used personal data}
+\\ \hline
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Question 4.} My use of the GenAI tool has \textbf{respected its terms of use}, as well as the essential ethical principles, not steering it maliciously towards an inappropriate result for the submitted work; that is, one that conveys an impression or knowledge contrary to the reality of the results obtained, that supplants my own work, or that may harm other people.
+
+\noindent\begin{tabularx}{\linewidth}{|X|X|}
+\hline
+\aiYesCell{\aiTermsRespected}{YES}
+&
+\aiNoCell{\aiTermsRespected}{NO}
+\\ \hline
+\end{tabularx}
+
+% ===================== PART 2 =====================
+\section*{Part 2: technical use declaration}
+
+% --- Guide and examples: draft version only (\aiShowExplanations=true) ---
+\ifthenelse{\equal{\aiShowExplanations}{true}}{%
+
+\aihint{Use the following declaration model as many times as necessary, in order to reflect all the types of interaction you have had with GenAI tools. Include one example per type of use carried out where indicated [Add an example].}
+
+\medskip
+\noindent\textbf{I declare having used the GenAI system} \aiFill{\aiSystemName} \aihint{(name and version of the GenAI system/tool: ChatGPT, Gemini, Copilot\dots)} \textbf{to:}
+
+\medskip
+\noindent\textbf{Documentation and writing:}
+\begin{itemize}
+  \item Support for reflection on the development of the work: an iterative process of analysing alternatives and approaches using GenAI.
+  \aibox{\aihint{[Add an example] For example: I requested a list of alternatives to tackle the problem stated at the beginning of the work.}}
+  \item Review or rewriting of previously written paragraphs.
+  \aibox{\aihint{[Add an example] For example: I requested the rewriting of paragraphs to shorten the conclusions while keeping the same ideas already written.}}
+  \item Searching for information or answering specific questions.
+  \aibox{\aihint{[Add an example] For example: the questions aimed at finding definitions, explanations of processes, examples of use, lists of risks\dots}}
+  \item Searching for bibliography.
+  \item Summarising the bibliography consulted.
+  \item Translating consulted texts.
+\end{itemize}
+
+\noindent\textbf{Developing specific content:}
+
+\aihint{GenAI has been used as a support tool for developing the specific content of the thesis, including:}
+\begin{itemize}
+  \item Assistance in developing lines of code (programming).
+  \aibox{\aihint{[Add an example of your usual programming workflow] For example: I asked for explanations about a piece of Python code.}}
+  \item Generation of diagrams, images, audio or video.
+  \aibox{\aihint{[State its use here and in a footnote to the figure/element generated by GenAI] For example: Source: own elaboration with the help of Midjourney.}}
+  \item Optimisation processes.
+  \aibox{\aihint{[Add an example of your usual optimisation workflow] For example: I asked for help to fix and explain errors in a piece of code that was not working correctly.}}
+  \item Data processing: collection, analysis, cross-referencing\dots
+  \aibox{\aihint{[Add an example] For example: once the data was collected, I asked for guidance on normalising it before the analysis.}}
+  \item Inspiration for ideas in the creative process.
+  \aibox{\aihint{[Add an example] For example: once the goal of the work was clear, I asked for ideas to approach it from a multidisciplinary perspective.}}
+  \item Other uses related to generating specific points of the specific development of the work.
+\end{itemize}
+
+\aihint{If you consider it necessary, add in each case \textbf{using the prompt \dots} (write the request made to the GenAI) and \textbf{with the following interaction \dots} (describe what interaction you carried out after the prompt's answer).}
+
+\aihint{\textbf{Example:} I declare having used the GenAI system \textbf{ChatGPT 3.5} to \textbf{search for information} using \textbf{the prompt:} ``Give me a concrete example that illustrates the application of the 15-minute City urban proposal in Spain'' with the following interaction: \textbf{the proposal of the concrete example of the Chamartín district, which has been included in the report}.}
+
+}{}% end of the guide
+
+% --- Your declaration (always shown). Copy the block to declare more uses. ---
+\medskip
+\noindent\textbf{My declaration:}
+\aibox[2.5cm]{\textbf{I declare} having used the GenAI system \aiFill{\aiSystemName} to \aiFill{\aiDeclPurpose} using \textbf{the prompt:} ``\aiFill{\aiDeclPrompt}'' with the following interaction: \aiFill{\aiDeclInteraction}.}
+
+% ===================== PART 3 =====================
+\section*{Part 3: reflection on usefulness}
+
+\aihint{Provide a personal assessment (free format) of the strengths and weaknesses you have identified in the use of GenAI tools in the development of your work. Mention whether it helped you in the learning process, in the development, or in drawing the conclusions of your work.}
+
+\aibox[5cm]{\aiReflection}
+
+}{% ---- GenAI not used ----
+
+\medskip
+\noindent I have not used GenAI tools in my thesis, so parts 1, 2 and 3 of this declaration do not apply.
+
+}

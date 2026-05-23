@@ -1,0 +1,59 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tfg_ai_declaration}[2026/05/22 v2.0.0 UC3M GenAI use declaration]
+
+% =====================================================================
+%  GENERATIVE AI (GenAI) USE DECLARATION
+%  ---------------------------------------------------------------------
+%  Styling and helper macros for the mandatory GenAI declaration annex.
+%  The annex text lives in others/ai_declaration.tex and is driven by the
+%  variables defined in tfg_vars.tex. true/false values select and
+%  highlight the matching option.
+% =====================================================================
+
+\RequirePackage{tabularx}     % full-width tables with line-breaking cells
+\RequirePackage{colortbl}     % \cellcolor for highlighted cells
+\RequirePackage{amssymb}      % \boxtimes / \square check boxes
+\RequirePackage{ifthen}       % \ifthenelse selectors
+\RequirePackage{luacolor}     % colour attribute backend for lua-ul
+\RequirePackage{lua-ul}       % robust highlighting under LuaLaTeX
+
+% Highlight colours (values come from the COLOURS section in tfg_vars.tex)
+\definecolor{aiSelectedBg}{HTML}{\colorAiSelected}
+\definecolor{aiFillBg}{HTML}{\colorAiFill}
+\definecolor{aiHint}{HTML}{\colorAiHint}
+
+% Highlight a value typed by the student (a "fill-in").
+\newcommand{\aiFill}[1]{\highLight[aiFillBg]{#1}}
+
+% YES/NO cells for the Part 1 questions. The selected option gets a filled
+% check box, a coloured background and bold text (so it also reads clearly
+% when printed in black and white).
+%   \aiYesCell{<true|false>}{<text>}  highlights when the value is true
+%   \aiNoCell{<true|false>}{<text>}   highlights when the value is false
+\newcommand{\aiYesCell}[2]{%
+  \ifthenelse{\equal{#1}{true}}%
+    {\cellcolor{aiSelectedBg}$\boxtimes$~\textbf{#2}}%
+    {$\square$~#2}}
+\newcommand{\aiNoCell}[2]{%
+  \ifthenelse{\equal{#1}{true}}%
+    {$\square$~#2}%
+    {\cellcolor{aiSelectedBg}$\boxtimes$~\textbf{#2}}}
+
+% Guidance / explanatory text (the "explanations"). Shown only when
+% \aiShowExplanations is true; set it to false in tfg_vars.tex to produce
+% the clean, production-ready version without the guidance text.
+\newcommand{\aihint}[1]{\ifthenelse{\equal{\aiShowExplanations}{true}}{{\itshape\color{aiHint}#1}}{}}
+
+% Full-width framed box to write your content into (Parts 2 and 3).
+% Optional argument = box height (default 2cm); #2 = content.
+\newcommand{\aibox}[2][2cm]{%
+  \par\smallskip
+  \setlength{\fboxsep}{6pt}%
+  \noindent\fbox{%
+    \begin{minipage}[c][#1][t]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}%
+      #2%
+    \end{minipage}}%
+  \par\smallskip
+}
+
+\endinput

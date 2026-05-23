@@ -1,82 +1,74 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{tfg_coverpage}[Cover page]
+\ProvidesPackage{tfg_coverpage}[2026/05/22 v2.0.0 UC3M TFG cover page]
 
-\RequirePackage{xcolor}
-\RequirePackage{changepage}
-\RequirePackage{eso-pic}
-\RequirePackage{geometry}
+% =====================================================================
+%  COVER PAGE
+%  ---------------------------------------------------------------------
+%  Provides \makecover, which builds the official-style cover from the
+%  variables defined in tfg_vars.tex. The colour azulUC3M is defined in
+%  tfg_uc3m.sty, which loads this package.
+% =====================================================================
+
 \RequirePackage{graphicx}
+\RequirePackage{svg}                % Vector logos
+\RequirePackage{float}             % [H] float placement
+\RequirePackage{ifthen}
 
-\usepackage{ifthen}
-
-\definecolor{azulUC3M}{RGB}{0,0,102}
-\definecolor{gray97}{gray}{.97}
-\definecolor{gray75}{gray}{.75}
-\definecolor{gray45}{gray}{.45}
-\definecolor{barblue}{RGB}{153,204,254}
-
-
-% Variables ya importadas en la plantilla general
-%\input{tfg_vars.tex}
-
-
-% comando para imprimir el footer con tipo de licencia
-\newcommand{\license}[1]
-{
-  \ifthenelse{\equal{#1}{cc}}{
-    % si nuestro trabajo se va a publicar con una licencia Creative Commons, incluir estas líneas. Es la opción recomendada.
-    % incluimos el logotipo de creativecommons
-    \includesvg[width=4.2cm]{images/coverpage/creativecommons_by-nc-nd.eu.svg}\\ 
-    This work is subjected to Creative Commons license - \textbf{Attribution - Non commercial - No derivatives}
-  }{}
-  \ifthenelse{\equal{#1}{reserved}}{
-    All rights reserved
-  }{}
-  % Aquí debajo se pueden definir más tipos, siguiendo el esquema anterior
+% ---------------------------------------------------------------------
+%  License notice printed at the bottom of the cover.
+%  Driven by \licenseType in tfg_vars.tex (values: cc / reserved).
+%  Add more license types below following the same pattern.
+% ---------------------------------------------------------------------
+\newcommand{\license}[1]{%
+  \ifthenelse{\equal{#1}{cc}}{%
+    % Creative Commons (recommended option).
+    \includesvg[width=4.2cm]{images/coverpage/creativecommons_by-nc-nd.eu.svg}\\
+    This work is licensed under the Creative Commons
+    \textbf{Attribution - NonCommercial - NoDerivatives} license.%
+  }{}%
+  \ifthenelse{\equal{#1}{reserved}}{%
+    All rights reserved.%
+  }{}%
 }
 
-
-
-%-------------
-%	PORTADA
-%-------------
-
-% Crea comando Portada
-\newcommand\makecover{
-
+% ---------------------------------------------------------------------
+%  \makecover - builds the cover page.
+% ---------------------------------------------------------------------
+\newcommand{\makecover}{%
 \begin{titlepage}
-	\begin{sffamily}
-	\color{azulUC3M}
-	\begin{center}
-		\begin{figure}[H] %incluimos el logotipo de la Universidad
-			\makebox[\textwidth][c]{\includesvg[width=16cm]{images/coverpage/UC3M_logo.svg}}
-		\end{figure}
-		\vspace{2.5cm}
-		\begin{Large}
-			\Bachelor \\
-			Academic year \Year \\
-			\vspace{2cm}		
-			\textsl{Bachelor's thesis}
-			\bigskip
-			
-		\end{Large}
-		 	{\Huge \Title }\\
-		 	\vspace*{0.5cm}
-	 		\rule{10.5cm}{0.1mm}\\
-			\vspace*{0.9cm}
-			{\LARGE \Author }\\ 
-			\vspace*{1cm}
-		\begin{Large}
-			Supervisor/Advisor\\
-			\SupervAdv \\
-			\PlaceDate \\
-		\end{Large}
-	\end{center}
-	\vfill
-	\color{black}
-	
-    \license{\licensetype}
-	
-	\end{sffamily}
+  \begin{sffamily}
+  \color{azulUC3M}
+  \begin{center}
+    % University logo
+    \begin{figure}[H]
+      \makebox[\textwidth][c]{\includesvg[width=16cm]{images/coverpage/UC3M_logo.svg}}
+    \end{figure}
+    \vspace{2.5cm}
+    \begin{Large}
+      \degree \\
+      Academic year \academicYear \\
+      \vspace{2cm}
+      \textsl{\thesisType}
+
+      \bigskip
+    \end{Large}
+    {\Huge \thesisTitle}\\
+    \vspace*{0.5cm}
+    \rule{10.5cm}{0.1mm}\\
+    \vspace*{0.9cm}
+    {\LARGE \thesisAuthor}\\
+    \vspace*{1cm}
+    \begin{Large}
+      Supervisor/Advisor\\
+      \thesisAdvisor \\
+      \placeAndDate \\
+    \end{Large}
+  \end{center}
+  \vfill
+  \color{black}
+  \license{\licenseType}
+  \end{sffamily}
 \end{titlepage}
 }
+
+\endinput

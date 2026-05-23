@@ -1,80 +1,161 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{tfg_uc3m}[UC3M "Trabajo fin de grado" package]
+\ProvidesPackage{tfg_uc3m}[2026/05/22 v2.0.0 UC3M Bachelor's Thesis (TFG) style]
 
-% FUENTES
-%\RequirePackage[utf8]{inputenc}
-\RequirePackage[T1]{fontenc}
-\RequirePackage{txfonts} 
-\RequirePackage[english,spanish,es-tabla]{babel}
+% =====================================================================
+%  UC3M BACHELOR'S THESIS (TFG) STYLE PACKAGE
+%  ---------------------------------------------------------------------
+%  This package centralises every package, layout rule and piece of
+%  configuration, so that tfg_main.tex stays minimal. Put your data in
+%  tfg_vars.tex and write your content under chapters/ and others/.
+%
+%  ENGINE: LuaLaTeX (uses fontspec, microtype, emoji, svg...).
+%  Do not compile with pdfLaTeX.
+% =====================================================================
 
-% Paquetes "molones"
-\RequirePackage{graphicx}
-\RequirePackage{hyperref}
-%\RequirePackage{fancyhdr} % Repetido
-\RequirePackage{lipsum}
-%\RequirePackage{mmap} % Da Problemas !
-\RequirePackage{relsize}
-\RequirePackage{fontawesome}
-\RequirePackage{rotating}
-\RequirePackage{csquotes}
+% =====================================================================
+%  CREDITS AND ACKNOWLEDGEMENTS
+%  ---------------------------------------------------------------------
+%  Template based on the official UC3M Bachelor's Thesis template, with
+%  influences from other templates, publicly available LaTeX snippets,
+%  original development, and suggestions and improvements contributed by
+%  former students, plus various optimisations.
+%
+%  To all students —past, present and future— who trusted, trust and
+%  will trust me as their BSc/MSc thesis advisor, and who inspired me to
+%  rescue, refactor and improve this template to its current state, to
+%  make developing their final project easier. Thanks also to the LaTeX
+%  community for its extensive support, to the tools and platforms that
+%  make collaborative LaTeX editing possible, and to the creators of
+%  LaTeX.
+% =====================================================================
 
-% Tipo de letra
-\RequirePackage{times}
-\RequirePackage[scaled=0.75]{beramono}
-
-%\RequirePackage{float} % Para el return H
-
-% LISTADOS DE CÓDIGO
-% soporte y estilo para listados de código. Más información en https://es.wikibooks.org/wiki/Manual_de_LaTeX/Listados_de_código/Listados_con_listings
-\RequirePackage{listings}
-
-% definimos un estilo de listings
-\lstdefinestyle{estilo}{ frame=Ltb,
-	framerule=0pt,
-	aboveskip=0.5cm,
-	framextopmargin=3pt,
-	framexbottommargin=3pt,
-	framexleftmargin=0.4cm,
-	framesep=0pt,
-	rulesep=.4pt,
-	backgroundcolor=\color{gray97},
-	rulesepcolor=\color{black},
-	%
-	basicstyle=\ttfamily\footnotesize,
-	keywordstyle=\bfseries,
-	stringstyle=\ttfamily,
-	showstringspaces = false,
-	commentstyle=\color{gray45},     
-	%
-	numbers=left,
-	numbersep=15pt,
-	numberstyle=\tiny,
-	numberfirstline = false,
-	breaklines=true,
-	xleftmargin=\parindent
+% ---------------------------------------------------------------------
+%  LANGUAGES (babel)
+%  The main language is the one declared LAST (English here); Spanish is
+%  also loaded so the Spanish summary (resumen) can be hyphenated.
+% ---------------------------------------------------------------------
+\RequirePackage[spanish,english]{babel}
+% Use "Tabla" / "Índice de tablas" instead of the babel-spanish defaults
+% ("Cuadro" / "Índice de cuadros") in any Spanish-language content.
+\addto\captionsspanish{%
+  \renewcommand{\tablename}{Tabla}%
+  \renewcommand{\listtablename}{Índice de tablas}%
 }
 
-%\captionsetup[lstlisting]{font=small, labelsep=period}
-% fijamos el estilo a utilizar
-%\lstset{style=estilo}
-%\renewcommand{\lstlistingname}{\uppercase{Código}}
+% ---------------------------------------------------------------------
+%  FONTS (fontspec - requires LuaLaTeX/XeLaTeX)
+%  TeX Gyre Heros is a free Helvetica/Arial-compatible font shipped with
+%  TeX Live and Overleaf, so no font file needs to be uploaded.
+%  To switch to a Times-like serif font, comment the Heros lines and
+%  use "TeX Gyre Termes" instead.
+% ---------------------------------------------------------------------
+\RequirePackage{fontspec}
+\setmainfont{TeX Gyre Heros}        % Body text (Arial-like)
+\setsansfont{TeX Gyre Heros}        % Sans-serif family
+\setmonofont{TeX Gyre Cursor}       % Monospaced family (for code)
+\RequirePackage{microtype}          % Subtle micro-typographic improvements
+\RequirePackage{emoji}              % Colour emojis (LuaLaTeX only)
+% Prefer OpenMoji (a vector COLR colour font) over the default Noto Color
+% Emoji (a bitmap font), so emojis come out vector instead of raster. The font
+% file must sit next to tfg_main.tex (the emoji package's \setemojifont takes
+% no Path option), so upload it to the project ROOT on Overleaf. If present it
+% is used; otherwise the template falls back to Noto. OpenMoji's COLRv0 (glyf)
+% build; updates at https://openmoji.org.
+\IfFileExists{OpenMoji-color-glyf_colr_0.ttf}{%
+  \setemojifont{OpenMoji-color-glyf_colr_0.ttf}%
+}{}
 
-
-
-% MÁRGENES: 2,5 cm sup. e inf.; 3 cm izdo. y dcho.
+% ---------------------------------------------------------------------
+%  PAGE GEOMETRY (UC3M rules: 2.5 cm top/bottom, 3 cm left/right)
+% ---------------------------------------------------------------------
 \RequirePackage[a4paper,vmargin=2.5cm,hmargin=3cm]{geometry}
 
-% INTERLINEADO: Estrecho (6 ptos./interlineado 1,15) o Moderado (6 ptos./interlineado 1,5)
+% ---------------------------------------------------------------------
+%  SPACING (UC3M rules: line spacing 1.15) and paragraph separation
+% ---------------------------------------------------------------------
 \renewcommand{\baselinestretch}{1.15}
-%\parskip=6pt   % Espacio entre párrafos
+\setlength{\parskip}{1.5ex}
 
-% Tipos de letra en títulos y secciones
-\newcommand{\dedicafont}{\usefont{T1}{phv}{m}{n}\fontsize{14}{17.5}\selectfont}
-\newcommand*{\copyrightfont}{\usefont{T1}{phv}{m}{n}\fontsize{6}{7.5}\selectfont}
-\newcommand{\sectionalfont}{\usefont{T1}{phv}{b}{n}}
-% {64}{80} {56}{70} {48}{60} {32}{40} {24}{30} {18}{22.5} {16}{20} {14}{17.5} {12}{15}
-\newcommand{\partnumberfont}{\sectionalfont\fontsize{64}{80}\selectfont}
-\newcommand{\parttitlefont}{\sectionalfont\fontsize{48}{60}\selectfont}
+% ---------------------------------------------------------------------
+%  GENERAL-PURPOSE PACKAGES
+% ---------------------------------------------------------------------
+\RequirePackage{graphicx}           % Include images
+\graphicspath{{images/}}            % Default folder for images
+\RequirePackage{svg}                % Vector SVG graphics (needs Inkscape)
+\RequirePackage{amsmath,amssymb,amsfonts}  % Mathematics
+\RequirePackage{eurosym}            % Euro symbol: \euro{}
+\RequirePackage{relsize}            % Relative font sizes: \smaller, \larger
+\RequirePackage{lipsum}             % Placeholder "Lorem ipsum" text (demo)
+\RequirePackage{ifthen}             % \ifthenelse, used by the selectors below
+\RequirePackage{tikz}               % Vector drawing (used by \tfgcheckmark)
+
+% A small tick mark, handy for comparison tables.
+\newcommand{\tfgcheckmark}{\tikz\fill[scale=0.4](0,.35)--(.25,0)--(1,.7)--(.25,.15)--cycle;}
+
+% ---------------------------------------------------------------------
+%  COLOUR PALETTE (single source of truth)
+% ---------------------------------------------------------------------
+\RequirePackage[table,svgnames]{xcolor}
+% Colour values come from the COLOURS section in tfg_vars.tex.
+\definecolor{azulUC3M}{RGB}{\colorBrand}
+\definecolor{highlightYellow}{HTML}{\colorHighlight}
+\definecolor{linkColor}{HTML}{\colorLink}
+\definecolor{codeBackground}{gray}{\colorCodeBg}
+\definecolor{codeComment}{gray}{\colorCodeComment}
+\definecolor{codeNumbers}{gray}{\colorCodeNumbers}
+\definecolor{codeKeyword}{HTML}{\colorCodeKeyword}
+\definecolor{codeString}{HTML}{\colorCodeString}
+
+% ---------------------------------------------------------------------
+%  SOURCE CODE LISTINGS
+%  One consistent colour scheme is applied to every listing. To get the
+%  right highlighting, just set the language on each block:
+%      \begin{lstlisting}[language=Python] ... \end{lstlisting}
+%  listings already knows ~100 languages (Python, C, C++, Java, HTML, SQL,
+%  bash, Matlab, PHP, R, XML...). JavaScript is added below (no built-in
+%  support). For a language listings does not know, add a \lstdefinelanguage.
+% ---------------------------------------------------------------------
+\RequirePackage{listings}
+
+% listings has no built-in JavaScript: define a minimal one.
+\lstdefinelanguage{JavaScript}{%
+  morekeywords={async,await,break,case,catch,class,const,continue,debugger,%
+    default,delete,do,else,export,extends,finally,for,function,if,import,in,%
+    instanceof,let,new,of,return,super,switch,this,throw,try,typeof,var,void,%
+    while,with,yield,true,false,null,undefined},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+}
+
+% Colour scheme + common look for every listing (colours from tfg_vars.tex).
+\lstset{
+  backgroundcolor=\color{codeBackground},
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\bfseries\color{codeKeyword},
+  commentstyle=\itshape\color{codeComment},
+  stringstyle=\color{codeString},
+  numbers=left,
+  numberstyle=\tiny\color{codeNumbers},
+  numbersep=10pt,
+  breaklines=true,
+  showstringspaces=false,
+  frame=Ltb,
+  framerule=0pt,
+  framesep=4pt,
+  xleftmargin=\parindent,
+  captionpos=b,
+  tabsize=2,
+}
+
+% ---------------------------------------------------------------------
+%  HEADING FONTS AND TITLE FORMATTING (titlesec)
+% ---------------------------------------------------------------------
+\newcommand{\dedicationfont}{\fontsize{14}{17.5}\selectfont}
+\newcommand{\copyrightfont}{\fontsize{6}{7.5}\selectfont}
+\newcommand{\sectionalfont}{\bfseries}
 \newcommand{\chapternumberfont}{\sectionalfont\fontsize{64}{80}\selectfont}
 \newcommand{\chaptertitlefont}{\sectionalfont\fontsize{32}{40}\selectfont}
 \newcommand{\sectiontitlefont}{\sectionalfont\fontsize{18}{22.5}\selectfont}
@@ -83,171 +164,203 @@
 \newcommand{\headertitlefont}{\sectionalfont\fontsize{12}{15}\selectfont}
 
 \RequirePackage{titlesec}
-\titleformat{\chapter} % command
-[display] % shape
-{} % format
-{\chapternumberfont\flushright\thechapter} % label
-{0pt} % sep
-{\chaptertitlefont\flushright} % before
-[] % after
+\titleformat{\chapter}[display]{}{\chapternumberfont\flushright\thechapter}{0pt}{\chaptertitlefont\flushright}{}
+\titleformat{\section}[block]{}{\sectiontitlefont\thesection}{1.5ex}{\sectiontitlefont}{}
+\titleformat{\subsection}[block]{}{\subsectiontitlefont\thesubsection}{1.5ex}{\subsectiontitlefont}{}
+\titleformat{\subsubsection}[block]{}{\subsubsectiontitlefont\thesubsubsection}{1.5ex}{\subsubsectiontitlefont}{}
 
-\titleformat{\section} % command
-[block] % shape
-{} % format
-{\sectiontitlefont\thesection} % label
-{1.5ex} % sep
-{\sectiontitlefont} % before
-[] % after
-
-
-\titleformat{\subsection} % command
-[block] % shape
-{} % format
-{\subsectiontitlefont\thesubsection} % label
-{1.5ex} % sep
-{\subsectiontitlefont} % before
-[] % after
-
-
-\titleformat{\subsubsection} % command
-[block] % shape
-{} % format
-{\subsubsectiontitlefont\thesubsubsection} % label
-{1.5ex} % sep
-{\subsubsectiontitlefont} % before
-[] % after
-
-
-
-\input{tfg_vars.tex}
-
-% comando para imprimir el footer con tipo de licencia
-\newcommand{\custombib}[1]
-{
-  \ifthenelse{\equal{#1}{apa}}{
-    % Bibliografía en formato APA
-    \usepackage[style=apa, backend=biber, natbib=true, hyperref=true, uniquelist=false, sortcites]{biblatex}
-  }{}
-  \ifthenelse{\equal{#1}{ieee}}{
-    % Bibliografía en formato IEEE
-    \usepackage[style=ieee, backend=biber, natbib=true, hyperref=true, uniquelist=false, sortcites]{biblatex}
-  }{}
-  % Aquí debajo se pueden definir más tipos, siguiendo el esquema anterior
-}
-
-
-
-%\RequirePackage[table]{xcolor} % Para el color de portada ?
-
-% Soporte para GENERAR PDF/A --es importante de cara a su inclusión -Archivo porque es el formato óptimo de preservación y a la generación de metadatos, tal y como se describe en http://uc3m.libguides.com/ld.php?content_id=31389625. En la carpeta incluímos el archivo plantilla_tfg_2017.xmpdata en el que puedes incluir los metadatos que se incorporarán al archivo PDF cuando lo compiles. Ese archivo debe llamarse igual que tu archivo .tex. Puedes ver un ejemplo en esta misma carpeta.
-%\RequirePackage[a-1b]{pdfx}
-
-% ENLACES
-\RequirePackage{hyperref}
-\hypersetup{colorlinks=true,
-	linkcolor=black, % enlaces a partes del documento (p.e. índice) en color negro
-	urlcolor=blue} % enlaces a recursos fuera del documento en azul
-
-% EXPRESIONES MATEMATICAS
-\RequirePackage{amssymb,amsfonts,eurosym}
-%\RequirePackage{amsmath} 
-%\RequirePackage{amsthm}
-
-
-
-% diseño de PIE DE PÁGINA
-\RequirePackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\cfoot{\thepage} % Numeración en el centro de la página Center Foot
-\fancypagestyle{plain}{\pagestyle{fancy}}
-
-
-% DISEÑO DE LOS TÍTULOS de las partes del trabajo (capítulos y epígrafes o subcapítulos)
-%\RequirePackage{titlesec}
-%\RequirePackage{titletoc}
-%\titleformat{\chapter}[block]
-%{\large\bfseries\filcenter}
-%{\thechapter.}
-%{5pt}
-%{\MakeUppercase}
-%{}
-%\titlespacing{\chapter}{0pt}{0pt}{*3}
-%\titlecontents{chapter}
-%[0pt]                                               
-%{}
-%{\contentsmargin{0pt}\thecontentslabel.\enspace\uppercase}
-%{\contentsmargin{0pt}\uppercase}                        
-%{\titlerule*[.7pc]{.}\contentspage}                 
-
-%\titleformat{\section}
-%{\bfseries}
-%{\thesection.}
-%{5pt}
-%{}
-%\titlecontents{section}
-%[5pt]                                               
-%{}
-%{\contentsmargin{0pt}\thecontentslabel.\enspace}
-%{\contentsmargin{0pt}}
-%{\titlerule*[.7pc]{.}\contentspage}
-
-
-%\titleformat{\subsection}
-%{\normalsize\bfseries}
-%{\thesubsection.}
-%{5pt}
-%{}
-%\titlecontents{subsection}
-%[10pt]                                               
-%{}
-%{\contentsmargin{0pt}                          
-%	\thecontentslabel.\enspace}
-%{\contentsmargin{0pt}}                        
-%{\titlerule*[.7pc]{.}\contentspage}  
-
-
-% DISEÑO DE TABLAS. Puedes elegir entre el estilo para ingeniería o para ciencias sociales y humanidades. Por defecto, está activado el estilo de ingeniería. Si deseas utilizar el otro, comenta las líneas del diseño de ingeniería y descomenta las del diseño de ciencias sociales y humanidades
-\RequirePackage{multirow} % permite combinar celdas 
-\RequirePackage{caption} % para personalizar el título de tablas y figuras
-\RequirePackage{subcaption} % Para poner dos imágenes juntas
-\RequirePackage{floatrow} % utilizamos este paquete y sus macros \ttabbox y \ffigbox para alinear los nombres de tablas y figuras de acuerdo con el estilo definido. Para su uso ver archivo de ejemplo 
-\RequirePackage{array} % con este paquete podemos definir en la siguiente línea un nuevo tipo de columna para tablas: ancho personalizado y contenido centrado
+% ---------------------------------------------------------------------
+%  TABLES AND CAPTIONS
+% ---------------------------------------------------------------------
+\RequirePackage{multirow}           % Merge cells across rows
+\RequirePackage{array}              % Extended column types
+\RequirePackage{tabularx}           % Fixed-width tables with line-wrapping cells
+\RequirePackage{float}              % Exact float placement with [H]
+\RequirePackage{caption}            % Customise figure/table captions
+\RequirePackage{subcaption}         % Sub-figures and sub-tables
+% New centred, fixed-width column type:  P{3cm}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
-\DeclareCaptionFormat{upper}{#1#2\uppercase{#3}\par}
-
-% Diseño de tabla
 \captionsetup[table]{
-	name=Table,
-	justification=centering,
-	labelsep=period,
-	width=.75\linewidth,
-	labelfont=small,
-	font=small,
+  name=Table,
+  justification=centering,
+  labelsep=period,
+  width=.75\linewidth,
+  labelfont=small,
+  font=small,
 }
 
-
-% Diseño de figuras 
-%\captionsetup[figure]{
-%	format=hang,
-%	name=Fig.,
-%	singlelinecheck=off, % Ajusta el nombre de la figura a la Izquierda
-%	labelsep=period,
-%	labelfont=small,
-%	font=small
-%}
-
-
-% NOTAS A PIE DE PÁGINA
-\RequirePackage{chngcntr} %para numeración contínua de las notas al pie
+% ---------------------------------------------------------------------
+%  FOOTNOTES (continuous numbering across the whole document)
+% ---------------------------------------------------------------------
+\RequirePackage{chngcntr}
 \counterwithout{footnote}{chapter}
 
+% ---------------------------------------------------------------------
+%  USER DATA (title, author, advisor, license, etc.)
+%  Loaded by tfg_main.tex before \documentclass (so the PDF/A switch can
+%  be read there); the values are already available at this point.
+% ---------------------------------------------------------------------
 
-% Portada
+% ---------------------------------------------------------------------
+%  HYPERLINKS AND PDF METADATA
+%  csquotes and hyperref must be loaded before biblatex (see \custombib).
+%  PDF metadata is taken automatically from the variables in tfg_vars.tex.
+% ---------------------------------------------------------------------
+\RequirePackage{csquotes}
+\RequirePackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,                  % Internal links (ToC, refs) in black
+  citecolor=black,                  % Citations in black
+  urlcolor=blue,                    % External links (URLs) in blue
+  pdftitle={\thesisTitle},
+  pdfauthor={\thesisAuthor},
+  pdfsubject={\thesisType{} -- \degree},
+  pdfkeywords={\thesisType; \university; \keywordsEn; \keywordsEs},
+  pdflang={en-US},
+  pdfcreator={LuaLaTeX - UC3M TFG template - \templateRepo},
+}
+
+% In PDF/A mode the pdfmanagement driver turns link colouring off, leaving
+% links invisible. Re-enable coloured links (standard PDF blue) only in PDF/A
+% mode; the normal build keeps the colours set above. Done at the end of
+% \begin{document} so it has the final say over the driver.
+\ifdefstring{\pdfaOutput}{true}{%
+  \AddToHook{begindocument/end}{\hypersetup{colorlinks=true,linkcolor=linkColor,citecolor=linkColor,urlcolor=linkColor}}%
+}{}
+
+% Record the template metadata as CUSTOM document properties, shown in Adobe's
+% "Custom" tab with their FULL values (the standard Creator field is truncated
+% by some viewers). Custom Info keys are PDF/A-safe (cf. LuaTeX's PTEX.Fullbanner).
+% Values are encoded with \pdfstringdef so accents survive; PDF/A uses the
+% pdfmanagement API and the normal build the LuaTeX primitive.
+\pdfstringdef\tfgMetaURL{\templateRepo}
+\pdfstringdef\tfgMetaAuthor{\templateAuthor}
+\pdfstringdef\tfgMetaContributors{\templateContributors}
+\pdfstringdef\tfgMetaVersion{\templateVersion}
+\pdfstringdef\tfgMetaDate{\templateDate}
+\pdfstringdef\tfgMetaComments{\templateComments}
+% The \tfgaddinfo helper writes each key into the /Info dictionary with the
+% backend that fits the current mode: pdfmanagement (PDF/A) if available, or
+% the LuaTeX primitive otherwise. It is defined inside a clean expl3 block:
+% expl3 code must NOT live inside an \ifdefstring branch (the branch is
+% pre-tokenised, which would break the \cs_... / \pdfmanagement_... names).
+\ExplSyntaxOn
+\cs_if_exist:NTF \pdfmanagement_add:nnn
+  { \cs_generate_variant:Nn \pdfmanagement_add:nnn { nnx } }
+  { }
+\newcommand \tfgaddinfo [2]
+  {
+    \cs_if_exist:NTF \pdfmanagement_add:nnn
+      { \pdfmanagement_add:nnx {Info} {#1} {(#2)} }
+      { \pdfextension info {/#1 (#2)} }
+  }
+\ExplSyntaxOff
+\tfgaddinfo{Template.URL}{\tfgMetaURL}
+\tfgaddinfo{Template.Author}{\tfgMetaAuthor}
+\tfgaddinfo{Template.Contributors}{\tfgMetaContributors}
+\tfgaddinfo{Template.Version}{\tfgMetaVersion}
+\tfgaddinfo{Template.Date}{\tfgMetaDate}
+\tfgaddinfo{Template.Comments}{\tfgMetaComments}
+
+% Bibliography style selector, driven by \bibStyle in tfg_vars.tex.
+% Add more styles below following the same pattern.
+\newcommand{\custombib}[1]{%
+  \ifthenelse{\equal{#1}{apa}}{%
+    % APA bibliography style
+    \usepackage[style=apa,backend=biber,natbib=true,hyperref=true,uniquelist=false,sortcites]{biblatex}%
+    % Make \cite{...} behave like \parencite{...} so APA citations are
+    % fully enclosed in parentheses.
+    \AtBeginDocument{%
+      \DeclareCiteCommand{\cite}[\mkbibparens]%
+        {\usebibmacro{prenote}}%
+        {\usebibmacro{citeindex}\usebibmacro{cite}}%
+        {\multicitedelim}%
+        {\usebibmacro{postnote}}%
+    }%
+  }{}%
+  \ifthenelse{\equal{#1}{ieee}}{%
+    % IEEE bibliography style
+    \usepackage[style=ieee,backend=biber,natbib=true,hyperref=true,uniquelist=false,sortcites]{biblatex}%
+  }{}%
+}
+
+% ---------------------------------------------------------------------
+%  GLOSSARY AND ACRONYMS (must be loaded after hyperref)
+% ---------------------------------------------------------------------
+\RequirePackage[acronym,toc]{glossaries}
+\makeglossaries
+
+% ---------------------------------------------------------------------
+%  HEADERS AND FOOTERS (fancyhdr)
+%  'tfgbody' is the page style for the body: chapter mark on the left of
+%  even pages, section mark on the right of odd pages, page number in the
+%  centre of the footer. 'plain' (chapter openings and front matter)
+%  shows only the centred page number.
+% ---------------------------------------------------------------------
+\RequirePackage{fancyhdr}
+\setlength{\headheight}{16pt}   % >= 15.34pt, as required by fancyhdr
+\renewcommand{\chaptermark}[1]{\markboth{\headertitlefont\thechapter\quad#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\headertitlefont\thesection\quad#1}}
+\fancypagestyle{tfgbody}{%
+  \fancyhf{}
+  \fancyhead[LE]{\leftmark}
+  \fancyhead[RO]{\rightmark}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+% ---------------------------------------------------------------------
+%  PHYSICALLY LANDSCAPE PAGE(S)  (tfglandscape environment)
+%  ---------------------------------------------------------------------
+%  One or more genuinely landscape pages (A4 horizontal): it changes the
+%  PHYSICAL sheet size with \pagewidth/\pageheight (LuaTeX primitives), so the
+%  page is landscape in any viewer and also in PDF/A (unlike pdflscape's
+%  /Rotate, which the PDF/A backend does not apply). It keeps the body header
+%  and footer (tfgbody) and works for tables, figures or text. Usage:
+%      \begin{tfglandscape}
+%        ...wide content...
+%      \end{tfglandscape}
+%  Technical note: \textheight sets the text-box height and, with it, the footer
+%  position; it must hold the landscape value BEFORE the \clearpage that starts
+%  the sheet and go back to portrait before the \clearpage that ends it (else the
+%  next page inherits the short height and its number ends up too high). The
+%  physical size is read when the page is shipped. After changing \textwidth we
+%  must tell fancyhdr via \headwidth so the header/footer span the full width.
+%  Tune the margins (40 mm sides, 50 mm vertical) to taste.
+\newlength{\tfg@saveTextheight}
+\newenvironment{tfglandscape}{%
+  \setlength{\tfg@saveTextheight}{\textheight}%       remember the portrait height
+  \setlength{\textheight}{\dimexpr\paperwidth-50mm\relax}% landscape text-box height
+  \clearpage                                          % start the landscape sheet with that height
+  \pagewidth=\paperheight \pageheight=\paperwidth%    physical A4 landscape size
+  \setlength{\textwidth}{\dimexpr\paperheight-40mm\relax}% ~2 cm side margins
+  \setlength{\hsize}{\textwidth}\setlength{\linewidth}{\textwidth}\setlength{\columnwidth}{\textwidth}%
+  \setlength{\oddsidemargin}{\dimexpr2cm-1in\relax}\setlength{\evensidemargin}{\oddsidemargin}%
+  \setlength{\topmargin}{\dimexpr1.5cm-1in\relax}%
+  \setlength{\footskip}{1cm}%
+  \ifcsundef{headwidth}{}{\setlength{\headwidth}{\textwidth}}% header/footer full width
+  \pagestyle{tfgbody}%
+}{%
+  \setlength{\textheight}{\tfg@saveTextheight}%       restore the portrait height
+  \clearpage                                          % flush the landscape page; the next is portrait again
+}
+
+% ---------------------------------------------------------------------
+%  COVER PAGE
+% ---------------------------------------------------------------------
 \RequirePackage{tfg_coverpage}
 
-%% Separamos los párrafos un poquito más
-\setlength{\parskip}{1.5ex}
+% ---------------------------------------------------------------------
+%  GENERATIVE AI USE DECLARATION (mandatory annex)
+% ---------------------------------------------------------------------
+\RequirePackage{tfg_ai_declaration}
 
 \endinput

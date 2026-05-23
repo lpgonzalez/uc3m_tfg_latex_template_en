@@ -1,15 +1,109 @@
-\newcommand\Bachelor{Bachelor in Computer Science and Engineering}
-\newcommand\Year{2021-2022}
+% =====================================================================
+%  USER-EDITABLE VARIABLES
+%  ---------------------------------------------------------------------
+%  Fill in the values below with the data of your thesis.
+%  Edit only the text inside the braces { }; do NOT rename the commands,
+%  as they are used by the cover page and by the PDF metadata.
+% =====================================================================
 
-\newcommand\Title{MY TITLE}
+% --- Academic information --------------------------------------------
+% Name of your degree / programme.
+\newcommand{\degree}{Bachelor in Computer Science and Engineering}
+% Academic year (e.g. 2024-2025).
+\newcommand{\academicYear}{2024-2025}
+% Type of work, shown on the cover and in the PDF metadata.
+\newcommand{\thesisType}{Bachelor's Thesis}
 
-\newcommand\Author{AUTHOR}
+% --- Work information -------------------------------------------------
+% Title of the thesis.
+\newcommand{\thesisTitle}{MY TITLE}
+% Full name of the author.
+\newcommand{\thesisAuthor}{AUTHOR}
+% Full name of the supervisor / advisor.
+\newcommand{\thesisAdvisor}{ADVISOR}
+% Place and date of the defence (e.g. Leganes, June 2025).
+\newcommand{\placeAndDate}{PLACE, MONTH YEAR}
 
-\newcommand\SupervAdv{ADVISOR}
-\newcommand\PlaceDate{PLACE, DAY$^{st, nd, rd}$ MONTH YEAR}
+% --- Institution -----------------------------------------------------
+% University name (used in the PDF metadata).
+\newcommand{\university}{Universidad Carlos III de Madrid}
 
-% Tipo de licencia a aplicar en el trabajo (valores: cc/reserved)
-\newcommand\licensetype{cc}
+% --- Keywords --------------------------------------------------------
+% Shown in the Abstract / Resumen and embedded in the PDF metadata.
+% Separate the terms with semicolons.
+\newcommand{\keywordsEn}{Keyword 1; Keyword 2; Keyword 3}
+\newcommand{\keywordsEs}{Palabra clave 1; Palabra clave 2; Palabra clave 3}
 
-% Formato para la bibliografía (valores: apa/ieee)
-\newcommand\bibtype{ieee}
+% --- Configuration ---------------------------------------------------
+% License applied to the work. Allowed values: cc / reserved
+\newcommand{\licenseType}{cc}
+% Bibliography style. Allowed values: apa / ieee
+\newcommand{\bibStyle}{ieee}
+% Show the demo chapter (chapters/00_examples) with the template examples. Set it
+% to false for the final version (it is just example content): this hides it
+% without having to comment anything out in tfg_main.tex.
+\newcommand{\showDemoChapter}{true}
+% (The PDF/A switch \pdfaOutput lives at the top of tfg_main.tex, because
+%  \DocumentMetadata must run before everything else.)
+% (The template "Template.*" metadata lives in tfg_template_info.tex; it is
+%  maintained by whoever updates the template, you need not touch it for your thesis.)
+
+
+% =====================================================================
+%  GENERATIVE AI (GenAI) USE DECLARATION (mandatory annex)
+%  ---------------------------------------------------------------------
+%  Rendered by others/ai_declaration.tex. true/false values select and
+%  highlight the matching option in the form.
+% =====================================================================
+
+% Show the guidance, examples and use-type guide (true) for a working/draft
+% version, or hide everything non-essential (hints, comments, unused
+% sections) for a production-ready version (false). Switch to false before
+% submitting.
+\newcommand{\aiShowExplanations}{true}
+
+% Did you use Generative AI in your thesis? (true/false)
+% If false, parts 1-3 are omitted and "NO" is marked.
+\newcommand{\aiUsed}{true}
+
+% --- Part 1: legal, ethical and responsible behaviour ----------------
+% For each question: true = the YES option, false = the NO option.
+\newcommand{\aiConfidentialData}{false}    % used confidential data?
+\newcommand{\aiCopyrightedMaterial}{false} % used copyrighted material?
+\newcommand{\aiPersonalData}{false}        % used personal data?
+\newcommand{\aiTermsRespected}{true}       % respected terms of use and ethics?
+
+% --- Part 2: technical use -------------------------------------------
+% Name(s) and version(s) of the GenAI system(s)/tool(s) used.
+\newcommand{\aiSystemName}{ChatGPT 4o}
+% A worked declaration (copy the block in others/ai_declaration.tex for more).
+\newcommand{\aiDeclPurpose}{search for information}
+\newcommand{\aiDeclPrompt}{Write here the prompt you used}
+\newcommand{\aiDeclInteraction}{describe what you did with the AI's answer}
+
+% --- Part 3: reflection on usefulness --------------------------------
+\newcommand{\aiReflection}{Write here your personal assessment (free format): the strengths and weaknesses you found when using GenAI tools, and whether they helped your learning, development or conclusions.}
+
+
+% =====================================================================
+%  COLOURS (advanced)
+%  ---------------------------------------------------------------------
+%  Colour values used throughout the template. Most users will not need
+%  to change these. Keep the UC3M corporate blue unless your faculty
+%  allows otherwise. Use "R,G,B" (0-255) for RGB and a 6-digit hex for HTML.
+%  To ADD a new colour you change TWO files: define its value here, and add a
+%  matching \definecolor{<name>}{<model>}{\<yourvalue>} in tfg_uc3m.sty.
+% =====================================================================
+\newcommand{\colorBrand}{0,0,102}       % UC3M corporate blue (cover, headings) [RGB]
+\newcommand{\colorHighlight}{FFFF00}    % text highlight [HTML]
+\newcommand{\colorLink}{0000EE}         % hyperlinks, only in PDF/A mode [HTML]
+% AI declaration annex
+\newcommand{\colorAiSelected}{FFE066}   % selected option [HTML]
+\newcommand{\colorAiFill}{D7E9FF}       % values you fill in [HTML]
+\newcommand{\colorAiHint}{1A7F5A}       % guidance text [HTML]
+% Source-code listings. Greys go 0 = black .. 1 = white; the rest are HTML.
+\newcommand{\colorCodeBg}{0.97}         % background (grey)
+\newcommand{\colorCodeComment}{0.45}    % comments (grey)
+\newcommand{\colorCodeNumbers}{0.55}    % line numbers (grey)
+\newcommand{\colorCodeKeyword}{0033CC}  % keywords [HTML]
+\newcommand{\colorCodeString}{008000}   % strings [HTML]
