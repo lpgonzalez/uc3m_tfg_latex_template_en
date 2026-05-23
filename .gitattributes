@@ -1,0 +1,8 @@
+# Language detection on GitHub (Linguist). Cosmetic only: it tunes the
+# repository's language bar; it does not affect compilation.
+
+# Markdown documentation (README, CHANGELOG) is not counted as "code".
+*.md         linguist-documentation
+
+# latexmk build configuration (Perl syntax); should not count.
+.latexmkrc   linguist-detectable=false
