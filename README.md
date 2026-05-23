@@ -1,8 +1,12 @@
 # uc3m_tfg_latex_template_en
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/lpgonzalez/uc3m_tfg_latex_template_en)](https://github.com/lpgonzalez/uc3m_tfg_latex_template_en/releases)
+[![Made with LuaLaTeX](https://img.shields.io/badge/Made%20with-LuaLaTeX-008080)](https://www.luatex.org/)
+
 LaTeX template for **Bachelor's theses (TFG)** at Universidad Carlos III de
 Madrid (UC3M). English version. A Spanish version is available at
-`uc3m_tfg_latex_template_es`.
+[uc3m_tfg_latex_template_es](https://github.com/lpgonzalez/uc3m_tfg_latex_template_es).
 
 The template follows the UC3M formatting rules (A4 paper, 2.5 cm top/bottom and
 3 cm left/right margins, 1.15 line spacing) and produces a PDF with embedded
@@ -179,3 +183,10 @@ improve this template to its current state, to make developing their final
 project easier. Thanks also to the LaTeX community for its extensive support, to
 the tools and platforms that make collaborative LaTeX editing possible, and to
 the creators of LaTeX.
+
+---
+
+## License
+
+This template is released under the **MIT** license (see [LICENSE](LICENSE)):
+you may freely use, modify and redistribute it, including for your own thesis.
