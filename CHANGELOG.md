@@ -5,6 +5,22 @@ All notable changes to this template are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this template adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.0.1] - 2026-05-25
+
+### Added
+- Expanded the acronyms/glossary example to match the Typst version: a new
+  acronym "OS" (without a glossary entry) and the term "Free software" (without
+  an acronym), in addition to the existing GUL and UC3M.
+
+### Changed
+- Cover: the Creative Commons logo is now smaller and placed to the left of the
+  license notice, with the text at ~10 pt so it does not stand out.
+- The code listing caption label is now `Code` (instead of the default `Listing`).
+
+### Fixed
+- The lists (contents, figures and tables) now flow continuously, with no blank
+  pages inserted between them.
+
 ## [2.0.0] - 2026-05-22
 
 Major overhaul of the template: deposit-ready output (PDF/A), modern fonts and

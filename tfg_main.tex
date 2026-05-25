@@ -72,11 +72,17 @@
 \clearpage
 
 % --- Tables of contents, figures and tables --------------------------
+% Chained with NO blank pages between them: inside the group, the
+% \cleardoublepage that \tableofcontents/\listof... insert (book class,
+% openright) is downgraded to \clearpage, so each list starts right after
+% the previous one instead of forcing an odd page.
+\begingroup
+\makeatletter\@openrightfalse\makeatother
+\let\cleardoublepage\clearpage
 \tableofcontents
-\clearpage
 \listoffigures
-\clearpage
 \listoftables
+\endgroup
 \clearpage
 
 % =====================================================================

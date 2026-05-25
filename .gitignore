@@ -19,7 +19,9 @@
 # these rules might exclude image files for figures etc.
 # *.ps
 # *.eps
-# *.pdf
+# (this template uses no PDF figures, so we ignore the compiled PDFs:
+#  tfg_main.pdf and the sample PDF go as a release asset, not into the repo)
+*.pdf
 
 ## Generated if empty string is given at "Please type another file name for output:"
 .pdf

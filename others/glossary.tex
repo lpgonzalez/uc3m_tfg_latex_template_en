@@ -4,9 +4,8 @@
 
 \newglossaryentry{GULg}{
     name={Linux Users Group},
-    description={The Linux Users Group is a student association interested in
-                 computers and computing, sharing the common goal of using and
-                 promoting free software}
+    description={A student association interested in computers and computing,
+                 sharing the common goal of using and promoting free software}
 }
 
 \newglossaryentry{UC3Mg}{
@@ -14,9 +13,17 @@
     description={Spanish public university located in the Region of Madrid}
 }
 
+\newglossaryentry{swlibre}{
+    name={Free software},
+    description={Software that respects users' freedom to run, copy, study,
+                 modify and redistribute it}
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Acronym entries (suggestion: append "a" to the label).
+%%  An acronym may have a glossary entry (GUL, UC3M) via see=; or not (OS),
+%%  to illustrate both cases.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newglossaryentry{GULa}{
@@ -26,6 +33,11 @@
     see=[Glossary:]{GULg}
 }
 
+\newglossaryentry{OSa}{
+    type = \acronymtype,
+    name = {OS},
+    description = {Operating System}
+}
 
 \newglossaryentry{UC3Ma}{
     type = \acronymtype,
